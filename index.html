@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LeadFlow | Prospecção de Clientes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">L</div>
+
+            <div>
+                <h2>LeadFlow</h2>
+                <span>Prospecção inteligente</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>⌂</span>
+                Visão geral
+            </button>
+
+            <button class="nav-item" data-page="generator">
+                <span>⌕</span>
+                Gerar leads
+            </button>
+
+            <button class="nav-item" data-page="leads">
+                <span>◎</span>
+                Meus leads
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-info">
+                <strong>LeadFlow V1</strong>
+                <span>Dados salvos neste navegador</span>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">PLATAFORMA DE PROSPECÇÃO</p>
+                <h1 id="pageTitle">Visão geral</h1>
+            </div>
+
+            <button class="primary small" onclick="openGenerator()">
+                + Buscar empresas
+            </button>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active">
+
+            <div class="welcome">
+
+                <div>
+                    <span class="tag">LEADFLOW</span>
+
+                    <h2>
+                        Transforme empresas em
+                        <span>oportunidades.</span>
+                    </h2>
+
+                    <p>
+                        Encontre potenciais clientes, organize sua prospecção
+                        e acompanhe seus contatos em um único lugar.
+                    </p>
+
+                    <button class="primary" onclick="openGenerator()">
+                        Encontrar novos leads
+                    </button>
+                </div>
+
+                <div class="welcome-decoration">
+                    <div class="pulse"></div>
+                    <div class="pulse p2"></div>
+                    <div class="pulse p3"></div>
+                    <div class="center-logo">L</div>
+                </div>
+
+            </div>
+
+
+            <!-- CARDS -->
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Leads salvos</span>
+                        <div class="stat-icon">◎</div>
+                    </div>
+
+                    <strong id="totalLeads">0</strong>
+                    <small>Empresas na sua lista</small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Sem website</span>
+                        <div class="stat-icon">◉</div>
+                    </div>
+
+                    <strong id="withoutSite">0</strong>
+                    <small>Oportunidades para criação de site</small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Contatados</span>
+                        <div class="stat-icon">✓</div>
+                    </div>
+
+                    <strong id="contacted">0</strong>
+                    <small>Leads que já receberam contato</small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Negociações</span>
+                        <div class="stat-icon">↗</div>
+                    </div>
+
+                    <strong id="negotiations">0</strong>
+                    <small>Potenciais clientes interessados</small>
+                </div>
+
+            </div>
+
+
+            <!-- OPORTUNIDADES -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Leads recentes</h3>
+                        <p>Últimas empresas adicionadas à sua lista.</p>
+                    </div>
+
+                    <button class="secondary" onclick="changePage('leads')">
+                        Ver todos
+                    </button>
+
+                </div>
+
+                <div id="recentLeads" class="empty-state">
+
+                    <div class="empty-icon">⌕</div>
+
+                    <h3>Nenhum lead salvo ainda</h3>
+
+                    <p>
+                        Faça sua primeira busca e comece a montar sua lista
+                        de potenciais clientes.
+                    </p>
+
+                    <button class="primary" onclick="openGenerator()">
+                        Gerar leads
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- GERADOR -->
+        <section id="generator" class="page">
+
+            <div class="generator-card">
+
+                <div class="generator-title">
+                    <span class="tag">BUSCA DE EMPRESAS</span>
+
+                    <h2>Encontre seus próximos clientes</h2>
+
+                    <p>
+                        Informe o segmento e a localização das empresas
+                        que você deseja prospectar.
+                    </p>
+                </div>
+
+
+                <div class="search-grid">
+
+                    <div class="field">
+                        <label>Segmento</label>
+
+                        <input
+                            id="segment"
+                            type="text"
+                            placeholder="Ex: Barbearia, Pizzaria, Clínica..."
+                        >
+                    </div>
+
+
+                    <div class="field">
+                        <label>Cidade</label>
+
+                        <input
+                            id="city"
+                            type="text"
+                            placeholder="Ex: Guarulhos, SP"
+                        >
+                    </div>
+
+
+                    <div class="field">
+                        <label>Quantidade</label>
+
+                        <select id="quantity">
+                            <option value="10">10 leads</option>
+                            <option value="20">20 leads</option>
+                            <option value="30">30 leads</option>
+                            <option value="50">50 leads</option>
+                        </select>
+                    </div>
+
+
+                    <button id="searchButton" class="primary search-button">
+                        Buscar empresas
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTADOS -->
+            <div id="resultsArea" class="results-area hidden">
+
+                <div class="results-header">
+
+                    <div>
+                        <h3>
+                            <span id="resultCount">0</span>
+                            empresas encontradas
+                        </h3>
+
+                        <p id="searchDescription"></p>
+                    </div>
+
+
+                    <div class="results-actions">
+
+                        <label class="filter-check">
+                            <input id="onlyWithoutSite" type="checkbox">
+                            Somente sem site
+                        </label>
+
+                        <button class="secondary" onclick="exportResults()">
+                            Exportar CSV
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-card">
+
+                    <div class="table-search">
+
+                        <input
+                            id="resultSearch"
+                            type="text"
+                            placeholder="Pesquisar nos resultados..."
+                        >
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Contato</th>
+                                    <th>Localização</th>
+                                    <th>Website</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="resultsTable"></tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOADING -->
+            <div id="loading" class="loading hidden">
+
+                <div class="spinner"></div>
+
+                <h3>Buscando empresas...</h3>
+
+                <p>
+                    Estamos procurando potenciais clientes para você.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MEUS LEADS -->
+        <section id="leads" class="page">
+
+            <div class="page-actions">
+
+                <div>
+                    <h2>Meus Leads</h2>
+                    <p>
+                        Organize as empresas que você pretende prospectar.
+                    </p>
+                </div>
+
+                <div class="action-group">
+
+                    <button class="secondary" onclick="exportSavedLeads()">
+                        Exportar CSV
+                    </button>
+
+                    <button class="primary" onclick="openGenerator()">
+                        + Adicionar leads
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="leads-toolbar">
+
+                <input
+                    id="savedSearch"
+                    type="text"
+                    placeholder="Pesquisar empresa..."
+                >
+
+                <select id="statusFilter">
+                    <option value="all">Todos os status</option>
+                    <option value="Novo">Novo</option>
+                    <option value="Contatado">Contatado</option>
+                    <option value="Interessado">Interessado</option>
+                    <option value="Fechado">Fechado</option>
+                    <option value="Perdido">Perdido</option>
+                </select>
+
+            </div>
+
+
+            <div class="table-card">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Empresa</th>
+                                <th>Telefone</th>
+                                <th>Website</th>
+                                <th>Status</th>
+                                <th>Observação</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="savedTable"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div id="savedEmpty" class="empty-state small-empty">
+
+                    <div class="empty-icon">◎</div>
+
+                    <h3>Sua lista está vazia</h3>
+
+                    <p>
+                        Salve empresas encontradas para acompanhar sua prospecção.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+<div id="toast" class="toast">
+    Lead salvo com sucesso.
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
